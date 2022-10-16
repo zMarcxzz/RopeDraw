@@ -27,10 +27,10 @@ function module:update(i,y)
 
     if not self.points[i] then return error('The point doesnt exists') end
     
-    self.points[i].From = Vector2.new(self.origin.X,y)
+    self.points[i].From = Vector2.new(self.origin.X,self.origin.Y+y)
     
     if self.points[i-1] then
-        self.points[i-1].To = Vector2.new(self.origin.X,y)
+        self.points[i-1].To = Vector2.new(self.origin.X,self.origin.Y+y)
     end
 end
 
