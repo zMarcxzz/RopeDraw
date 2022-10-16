@@ -33,13 +33,21 @@ function module.new(points,position,distance)
 end
 
 function module:update(i,y)
-
+    
+    if (not self.points[i]) and self.points[i-1] then
+        
+        self.points[i-1].From = Vector2.new(self.origin.X,self.origin.Y+y) + (self.distance*i)
+        
+        return
+    end
+        
+    
     if not self.points[i] then return error('The point doesnt exists') end
     
     self.points[i].From = Vector2.new(self.origin.X,self.origin.Y+y) + (self.distance*i)
     
     if self.points[i-1] then
-        self.points[i-1].To = Vector2.new(self.origin.X,self.origin.Y+y) + (self.distance*i)
+        self.points[i-1].To = Vector2.new(self.origin.X,self.origin.Y+y) + (self.distance*(i-1))
     end
 end
 
