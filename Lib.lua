@@ -39,7 +39,7 @@ function module:update(i,y)
     end
     
     if self.points[i-1] then
-        self.points[i-1].To = Vector2.new(self.origin.X,self.origin.Y+y) + (self.distance*(i-1))
+        self.points[i-1].To = Vector2.new(self.origin.X,self.origin.Y+y) + (self.distance*(i))
     end
 end
 
