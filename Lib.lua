@@ -3,9 +3,7 @@ module.__index = module
 
 local draw = Drawing.new
 
-local circles = {}
-
-function module.new(points,position,distance)
+function module.new(points,position,distance,color)
 
     if points < 2 then return error('The min of points are 2') end
     
@@ -14,17 +12,11 @@ function module.new(points,position,distance)
     for i = 1,points-1 do
         local new = draw('Line')
         
+        new.Color = color
         new.From = position+(distance*i)
         new.To = position+(distance*(i+1))
         
         new.Visible = true
-        
-        local circle = draw('Circle')
-        
-        circle.Radius = 10
-        circle.Visible = true
-        
-        circles[new] = circle
         
         self.points[i] = new
     end
@@ -35,11 +27,11 @@ end
 function module:update(i,y)
     
     if self.points[i] then
-        self.points[i].From = Vector2.new(self.origin.X,self.origin.Y+y) + (self.distance*i)
+        self.points[i].From = Vector2.new(self.origin.X,self.origin.Y-y) + (self.distance*i)
     end
     
     if self.points[i-1] then
-        self.points[i-1].To = Vector2.new(self.origin.X,self.origin.Y+y) + (self.distance*(i))
+        self.points[i-1].To = Vector2.new(self.origin.X,self.origin.Y-y) + (self.distance*(i))
     end
 end
 
